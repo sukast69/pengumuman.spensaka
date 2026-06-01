@@ -7,6 +7,18 @@ import { bunny } from 'laravel-vite-plugin/fonts';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
+    build: {
+        rollupOptions: {
+            output: {
+                manualChunks(id: string) {
+                    if (id.includes('node_modules/react-dom') || id.includes('node_modules/react/')) return 'vendor-react';
+                    if (id.includes('node_modules/@radix-ui/')) return 'vendor-radix';
+                    if (id.includes('node_modules/lucide-react')) return 'vendor-lucide';
+                    if (id.includes('node_modules/class-variance-authority') || id.includes('node_modules/clsx') || id.includes('node_modules/tailwind-merge') || id.includes('node_modules/sonner')) return 'vendor-utils';
+                },
+            },
+        },
+    },
     plugins: [
         laravel({
             input: ['resources/css/app.css', 'resources/js/app.tsx'],
