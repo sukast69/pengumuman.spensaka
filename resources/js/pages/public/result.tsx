@@ -41,71 +41,71 @@ export default function Result({ student }: { student: Student }) {
                         </h1>
                     </div>
 
-                    <Card className="overflow-hidden border-gray-200 shadow-lg bg-white">
+                    <Card className="overflow-hidden border-gray-200 shadow-lg bg-white dark:border-gray-700 dark:bg-slate-900">
                         {isLulus ? (
-                            <div className="border-b border-gray-100 bg-green-50 px-6 py-7 text-center">
-                                <CheckCircle2 className="mx-auto mb-3 h-10 w-10 text-green-600" />
-                                <p className="text-xs font-semibold tracking-widest text-green-700 uppercase">
+                            <div className="border-b border-gray-100 bg-green-50 px-6 py-7 text-center dark:border-green-900 dark:bg-green-950">
+                                <CheckCircle2 className="mx-auto mb-3 h-10 w-10 text-green-600 dark:text-green-400" />
+                                <p className="text-xs font-semibold tracking-widest text-green-700 uppercase dark:text-green-300">
                                     Selamat!
                                 </p>
-                                <p className="mt-1 text-2xl font-bold tracking-tight text-green-700">
+                                <p className="mt-1 text-2xl font-bold tracking-tight text-green-700 dark:text-green-300">
                                     LULUS
                                 </p>
-                                <p className="mt-1.5 text-sm leading-relaxed text-green-600">
+                                <p className="mt-1.5 text-sm leading-relaxed text-green-600 dark:text-green-400">
                                     Anda dinyatakan lulus dari SMP Negeri 1 Tejakula
                                 </p>
                             </div>
                         ) : (
-                            <div className="border-b border-gray-100 bg-gray-50 px-6 py-7 text-center">
-                                <XCircle className="mx-auto mb-3 h-10 w-10 text-gray-400" />
-                                <p className="text-2xl font-bold tracking-tight text-gray-600">
+                            <div className="border-b border-gray-100 bg-gray-50 px-6 py-7 text-center dark:border-gray-700 dark:bg-slate-800">
+                                <XCircle className="mx-auto mb-3 h-10 w-10 text-gray-400 dark:text-gray-500" />
+                                <p className="text-2xl font-bold tracking-tight text-gray-600 dark:text-gray-300">
                                     TIDAK LULUS
                                 </p>
-                                <p className="mt-1.5 text-sm leading-relaxed text-gray-500">
+                                <p className="mt-1.5 text-sm leading-relaxed text-gray-500 dark:text-gray-400">
                                     Mohon maaf, Anda belum dinyatakan lulus
                                 </p>
                             </div>
                         )}
 
-                        <CardContent className="p-0 bg-white">
+                        <CardContent className="p-0 bg-white dark:bg-slate-900">
                             <div className="space-y-0 px-6 py-5">
-                                <div className="flex items-center justify-between border-b border-gray-100 py-3">
-                                    <span className="text-xs font-semibold tracking-wider text-gray-500 uppercase">
+                                <div className="flex items-center justify-between border-b border-gray-100 py-3 dark:border-gray-700">
+                                    <span className="text-xs font-semibold tracking-wider text-gray-500 uppercase dark:text-gray-400">
                                         NISN
                                     </span>
-                                    <span className="font-mono text-sm font-medium text-gray-900">
+                                    <span className="font-mono text-sm font-medium text-gray-900 dark:text-white">
                                         {student.nisn}
                                     </span>
                                 </div>
-                                <div className="flex items-center justify-between border-b border-gray-100 py-3">
-                                    <span className="text-xs font-semibold tracking-wider text-gray-500 uppercase">
+                                <div className="flex items-center justify-between border-b border-gray-100 py-3 dark:border-gray-700">
+                                    <span className="text-xs font-semibold tracking-wider text-gray-500 uppercase dark:text-gray-400">
                                         Nama
                                     </span>
-                                    <span className="text-right text-sm font-medium text-gray-900">
+                                    <span className="text-right text-sm font-medium text-gray-900 dark:text-white">
                                         {student.nama}
                                     </span>
                                 </div>
-                                <div className="flex items-center justify-between border-b border-gray-100 py-3">
-                                    <span className="text-xs font-semibold tracking-wider text-gray-500 uppercase">
+                                <div className="flex items-center justify-between border-b border-gray-100 py-3 dark:border-gray-700">
+                                    <span className="text-xs font-semibold tracking-wider text-gray-500 uppercase dark:text-gray-400">
                                         TTL
                                     </span>
-                                    <span className="text-right text-sm font-medium text-gray-900">
+                                    <span className="text-right text-sm font-medium text-gray-900 dark:text-white">
                                         {student.ttl}
                                     </span>
                                 </div>
                                 <div className="flex items-center justify-between py-3">
-                                    <span className="text-xs font-semibold tracking-wider text-gray-500 uppercase">
+                                    <span className="text-xs font-semibold tracking-wider text-gray-500 uppercase dark:text-gray-400">
                                         Status
                                     </span>
                                     {isLulus ? (
-                                        <Badge className="bg-green-100 px-3 py-1 text-xs font-semibold tracking-wide text-green-700 uppercase hover:bg-green-100">
+                                        <Badge className="bg-green-100 px-3 py-1 text-xs font-semibold tracking-wide text-green-700 uppercase hover:bg-green-100 dark:bg-green-900 dark:text-green-300 dark:hover:bg-green-900">
                                             <CheckCircle2 className="mr-1.5 h-3 w-3" />
                                             LULUS
                                         </Badge>
                                     ) : (
                                         <Badge
                                             variant="outline"
-                                            className="border-gray-300 px-3 py-1 text-xs font-semibold tracking-wide text-gray-600 uppercase"
+                                            className="border-gray-300 px-3 py-1 text-xs font-semibold tracking-wide text-gray-600 uppercase dark:border-gray-600 dark:text-gray-400"
                                         >
                                             <XCircle className="mr-1.5 h-3 w-3" />
                                             TIDAK LULUS
@@ -115,10 +115,10 @@ export default function Result({ student }: { student: Student }) {
                             </div>
 
                             {isLulus && student.link_skl && (
-                                <div className="border-t border-gray-100 px-6 pb-6 pt-2">
+                                <div className="border-t border-gray-100 px-6 pb-6 pt-2 dark:border-gray-700">
                                     <Button
                                         size="lg"
-                                        className="h-12 w-full gap-2 bg-gray-900 text-sm font-semibold tracking-wide text-white hover:bg-gray-800 active:scale-[0.98]"
+                                        className="h-12 w-full gap-2 bg-gray-900 text-sm font-semibold tracking-wide text-white hover:bg-gray-800 active:scale-[0.98] dark:bg-white dark:text-gray-900 dark:hover:bg-gray-200"
                                         asChild
                                     >
                                         <a
@@ -134,9 +134,9 @@ export default function Result({ student }: { student: Student }) {
                             )}
 
                             {!isLulus && (
-                                <div className="border-t border-gray-100 px-6 pb-6 pt-2">
-                                    <div className="rounded-lg bg-gray-50 px-4 py-3.5 text-center">
-                                        <p className="text-sm leading-relaxed text-gray-500">
+                                <div className="border-t border-gray-100 px-6 pb-6 pt-2 dark:border-gray-700">
+                                    <div className="rounded-lg bg-gray-50 px-4 py-3.5 text-center dark:bg-slate-800">
+                                        <p className="text-sm leading-relaxed text-gray-500 dark:text-gray-400">
                                             Untuk informasi lebih lanjut, hubungi pihak sekolah.
                                         </p>
                                     </div>

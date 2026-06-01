@@ -8,7 +8,7 @@ Route::get('/', function () {
     return Inertia\Inertia::render('public/search');
 })->name('home');
 
-Route::post('/search', [StudentController::class, 'search'])->name('search');
+Route::post('/search', [StudentController::class, 'search'])->middleware('throttle:30,1')->name('search');
 Route::get('/search', function () {
     return redirect('/');
 });

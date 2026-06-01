@@ -27,8 +27,8 @@ export default function SearchPage() {
                 <div className="absolute inset-0 bg-slate-950/75 backdrop-blur-xs" />
 
                 {/* Main Card Container */}
-                <Card className="relative w-full max-w-sm border-gray-200 bg-white shadow-lg z-10 overflow-hidden">
-                    <CardHeader className="items-center pb-2 pt-8 text-center bg-white">
+                <Card className="relative w-full max-w-sm border-gray-200 bg-white shadow-lg z-10 overflow-hidden dark:border-gray-700 dark:bg-slate-900">
+                    <CardHeader className="items-center pb-2 pt-8 text-center bg-white dark:bg-slate-900">
                         <img
                             src="https://placehold.co/72x72/1e40af/ffffff?text=T"
                             alt="Logo Sekolah"
@@ -36,25 +36,25 @@ export default function SearchPage() {
                             width={72}
                             height={72}
                         />
-                        <CardTitle className="text-xl font-bold tracking-tight text-gray-900">
+                        <CardTitle className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
                             SMP Negeri 1 Tejakula
                         </CardTitle>
-                        <CardDescription className="text-sm tracking-wide text-gray-500">
+                        <CardDescription className="text-sm tracking-wide text-gray-500 dark:text-gray-400">
                             Pengumuman Kelulusan Tahun Ajaran 2024/2025
                         </CardDescription>
                     </CardHeader>
                     
-                    <CardContent className="px-8 pb-8 pt-2 bg-white">
+                    <CardContent className="px-8 pb-8 pt-2 bg-white dark:bg-slate-900">
                         <form onSubmit={handleSearch} className="space-y-5">
                             <div className="space-y-2">
                                 <label
                                     htmlFor="nisn"
-                                    className="text-xs font-semibold tracking-wider text-gray-600 uppercase"
+                                    className="text-xs font-semibold tracking-wider text-gray-600 uppercase dark:text-gray-300"
                                 >
                                     NISN
                                 </label>
                                 <div className="relative">
-                                    <Search className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
+                                    <Search className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400 dark:text-gray-500" />
                                     <Input
                                         id="nisn"
                                         type="text"
@@ -64,14 +64,14 @@ export default function SearchPage() {
                                         required
                                         autoFocus
                                         maxLength={20}
-                                        className="h-12 border-gray-300 pl-10 text-base tracking-wide placeholder:text-gray-400 focus:border-gray-900 focus:ring-0"
+                                        className="h-12 border-gray-300 pl-10 text-base tracking-wide placeholder:text-gray-400 focus:border-gray-900 focus:ring-0 dark:border-gray-600 dark:text-white dark:placeholder:text-gray-500 dark:focus:border-white"
                                     />
                                 </div>
                             </div>
                             <Button
                                 type="submit"
                                 size="lg"
-                                className="h-12 w-full bg-gray-900 text-sm font-semibold tracking-wide text-white hover:bg-gray-800 active:scale-[0.98]"
+                                className="h-12 w-full bg-gray-900 text-sm font-semibold tracking-wide text-white hover:bg-gray-800 active:scale-[0.98] dark:bg-white dark:text-gray-900 dark:hover:bg-gray-200"
                             >
                                 Cari
                             </Button>
