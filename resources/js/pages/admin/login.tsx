@@ -25,7 +25,7 @@ export default function AdminLogin() {
 
             <div
                 className="relative flex min-h-screen bg-slate-950 bg-cover bg-center bg-no-repeat"
-                style={{ backgroundImage: "url('/images/school_background.webp')" }}
+                style={{ backgroundImage: "url('/images/bg-smpn-1-tejakula.webp')" }}
             >
                 {/* Translucent glass overlay */}
                 <div className="absolute inset-0 bg-slate-950/75 backdrop-blur-xs" />

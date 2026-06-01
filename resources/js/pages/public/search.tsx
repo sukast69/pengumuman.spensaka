@@ -31,7 +31,7 @@ export default function SearchPage() {
 
             <div 
                 className="relative flex min-h-screen items-center justify-center bg-slate-950 px-4 bg-cover bg-center bg-no-repeat"
-                style={{ backgroundImage: "url('/images/school_background.webp')" }}
+                style={{ backgroundImage: "url('/images/bg-smpn-1-tejakula.webp')" }}
             >
                 {/* Translucent glass overlay */}
                 <div className="absolute inset-0 bg-slate-950/75 backdrop-blur-xs" />
