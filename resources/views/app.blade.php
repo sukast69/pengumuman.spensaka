@@ -19,15 +19,11 @@
             })();
         </script>
 
-        {{-- Inline style to set the HTML background color based on our theme in app.css --}}
+        {{-- Critical inline CSS: ensures fast first paint without blocking --}}
         <style>
-            html {
-                background-color: oklch(1 0 0);
-            }
-
-            html.dark {
-                background-color: oklch(0.145 0 0);
-            }
+            *,*::before,*::after{box-sizing:border-box}
+            html{background-color:#020617}
+            body{margin:0;font-family:'Poppins',ui-sans-serif,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
         </style>
 
         <link rel="icon" href="/favicon.ico" sizes="any">
@@ -36,8 +32,20 @@
 
         @fonts
 
+        {{-- Load CSS async (non-render-blocking) via preload + onload --}}
+        @php
+            $manifestPath = public_path('build/manifest.json');
+            $manifest = file_exists($manifestPath) ? json_decode(file_get_contents($manifestPath), true) : null;
+            $cssFile = $manifest['resources/css/app.css']['file'] ?? null;
+        @endphp
+        @if ($cssFile)
+            <link rel="preload" href="{{ asset('build/' . $cssFile) }}" as="style" fetchpriority="high"
+                  onload="this.onload=null;this.rel='stylesheet'">
+            <noscript><link rel="stylesheet" href="{{ asset('build/' . $cssFile) }}"></noscript>
+        @endif
+
         @viteReactRefresh
-        @vite(['resources/css/app.css', 'resources/js/app.tsx', "resources/js/pages/{$page['component']}.tsx"])
+        @vite(['resources/js/app.tsx', "resources/js/pages/{$page['component']}.tsx"])
         <x-inertia::head>
             <title>{{ config('app.name', 'Laravel') }}</title>
         </x-inertia::head>
