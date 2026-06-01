@@ -31,7 +31,7 @@ export default function SearchPage() {
 
             <div 
                 className="relative flex min-h-screen items-center justify-center bg-slate-950 px-4 bg-cover bg-center bg-no-repeat"
-                style={{ backgroundImage: "image-set(url('/images/school_background.webp') type('image/webp'), url('/images/school_background.png') type('image/png'))" }}
+                style={{ backgroundImage: "url('/images/school_background.webp')" }}
             >
                 {/* Translucent glass overlay */}
                 <div className="absolute inset-0 bg-slate-950/75 backdrop-blur-xs" />
@@ -40,7 +40,7 @@ export default function SearchPage() {
                 <Card className="relative w-full max-w-sm border-gray-200 bg-white shadow-lg z-10 overflow-hidden dark:border-gray-700 dark:bg-slate-900">
                     <CardHeader className="items-center pb-2 pt-8 text-center bg-white dark:bg-slate-900">
                         <img
-                            src="https://placehold.co/72x72/1e40af/ffffff?text=T"
+                            src="/images/logo-smpn1tejakula.png"
                             alt="Logo Sekolah"
                             className="mb-4 h-18 w-18 rounded-xl object-cover shadow-sm"
                             width={72}

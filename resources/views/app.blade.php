@@ -26,9 +26,8 @@
             body{margin:0;font-family:'Poppins',ui-sans-serif,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
         </style>
 
-        <link rel="icon" href="/favicon.ico" sizes="any">
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+        <link rel="icon" href="/images/logo-smpn1tejakula.png" sizes="any">
+        <link rel="apple-touch-icon" href="/images/logo-smpn1tejakula.png">
 
         @fonts
 

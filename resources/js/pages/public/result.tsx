@@ -22,7 +22,7 @@ export default function Result({ student }: { student: Student }) {
 
             <div 
                 className="relative flex min-h-screen items-center justify-center bg-slate-950 px-4 py-12 bg-cover bg-center bg-no-repeat"
-                style={{ backgroundImage: "image-set(url('/images/school_background.webp') type('image/webp'), url('/images/school_background.png') type('image/png'))" }}
+                style={{ backgroundImage: "url('/images/school_background.webp')" }}
             >
                 {/* Translucent glass overlay */}
                 <div className="absolute inset-0 bg-slate-950/75 backdrop-blur-xs" />
@@ -30,7 +30,7 @@ export default function Result({ student }: { student: Student }) {
                 <div className="relative w-full max-w-sm z-10">
                     <div className="mb-6 text-center">
                         <img
-                            src="https://placehold.co/56x56/1e40af/ffffff?text=T"
+                            src="/images/logo-smpn1tejakula.png"
                             alt="Logo Sekolah"
                             className="mx-auto mb-3 h-14 w-14 rounded-xl object-cover shadow-sm"
                             width={56}

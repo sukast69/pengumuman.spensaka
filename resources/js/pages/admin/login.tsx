@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { School } from 'lucide-react';
+
 import { useState } from 'react';
 import AppFooter from '@/components/app-footer';
 
@@ -25,13 +25,13 @@ export default function AdminLogin() {
 
             <div
                 className="relative flex min-h-screen bg-slate-950 bg-cover bg-center bg-no-repeat"
-                style={{ backgroundImage: "image-set(url('/images/school_background.webp') type('image/webp'), url('/images/school_background.png') type('image/png'))" }}
+                style={{ backgroundImage: "url('/images/school_background.webp')" }}
             >
                 {/* Translucent glass overlay */}
                 <div className="absolute inset-0 bg-slate-950/75 backdrop-blur-xs" />
 
                 <div className="relative z-10 hidden w-1/2 flex-col items-center justify-center bg-black/40 backdrop-blur-sm p-12 text-white lg:flex">
-                    <School className="mb-6 h-16 w-16" />
+                    <img src="/images/logo-smpn1tejakula.png" alt="Logo Sekolah" className="mb-4 h-20 w-20 rounded-xl object-cover shadow-sm" />
                     <h1 className="mb-2 text-3xl font-bold">SMP Negeri 1 Tejakula</h1>
                     <p className="mb-8 text-center text-lg text-white/80">
                         Sistem Pengumuman Kelulusan & Download SKL
@@ -46,8 +46,8 @@ export default function AdminLogin() {
                     <Card className="w-full max-w-md shadow-lg">
                         <CardHeader className="text-center">
                             <div className="mb-4 flex justify-center lg:hidden">
-                                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-indigo-600">
-                                    <School className="h-6 w-6 text-white" />
+                                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-indigo-600 p-1">
+                                    <img src="/images/logo-smpn1tejakula.png" alt="Logo Sekolah" className="h-full w-full rounded-full object-cover" />
                                 </div>
                             </div>
                             <CardTitle className="text-2xl font-bold">
