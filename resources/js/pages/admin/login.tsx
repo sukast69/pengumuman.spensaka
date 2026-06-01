@@ -23,8 +23,14 @@ export default function AdminLogin() {
         <>
             <Head title="Admin Login" />
 
-            <div className="flex min-h-screen">
-                <div className="hidden w-1/2 flex-col items-center justify-center bg-gradient-to-br from-indigo-600 via-blue-700 to-cyan-500 p-12 text-white lg:flex">
+            <div
+                className="relative flex min-h-screen bg-slate-950 bg-cover bg-center bg-no-repeat"
+                style={{ backgroundImage: "image-set(url('/images/school_background.webp') type('image/webp'), url('/images/school_background.png') type('image/png'))" }}
+            >
+                {/* Translucent glass overlay */}
+                <div className="absolute inset-0 bg-slate-950/75 backdrop-blur-xs" />
+
+                <div className="relative z-10 hidden w-1/2 flex-col items-center justify-center bg-black/40 backdrop-blur-sm p-12 text-white lg:flex">
                     <School className="mb-6 h-16 w-16" />
                     <h1 className="mb-2 text-3xl font-bold">SMP Negeri 1 Tejakula</h1>
                     <p className="mb-8 text-center text-lg text-white/80">
@@ -36,7 +42,7 @@ export default function AdminLogin() {
                     </p>
                 </div>
 
-                <div className="flex w-full items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 p-4 lg:w-1/2 dark:from-gray-900 dark:to-gray-800">
+                <div className="relative z-10 flex w-full items-center justify-center bg-white/10 p-4 lg:w-1/2 dark:bg-slate-900/80">
                     <Card className="w-full max-w-md shadow-lg">
                         <CardHeader className="text-center">
                             <div className="mb-4 flex justify-center lg:hidden">
