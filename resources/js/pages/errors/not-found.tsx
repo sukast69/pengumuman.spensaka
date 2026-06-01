@@ -2,6 +2,7 @@ import { Head, Link } from '@inertiajs/react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { ArrowLeft, SearchX } from 'lucide-react';
+import AppFooter from '@/components/app-footer';
 
 export default function NotFound() {
     return (
@@ -49,6 +50,8 @@ export default function NotFound() {
                     </CardContent>
                 </Card>
             </div>
+
+            <AppFooter />
         </>
     );
 }

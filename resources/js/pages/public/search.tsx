@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Input } from '@/components/ui/input';
 import { Search } from 'lucide-react';
 import { useState } from 'react';
+import AppFooter from '@/components/app-footer';
 
 export default function SearchPage() {
     const [nisn, setNisn] = useState('');
@@ -77,6 +78,10 @@ export default function SearchPage() {
                         </form>
                     </CardContent>
                 </Card>
+
+                <div className="absolute bottom-0 left-0 right-0 z-10">
+                    <AppFooter variant="dark" />
+                </div>
             </div>
         </>
     );

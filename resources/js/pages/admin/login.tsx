@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { School } from 'lucide-react';
 import { useState } from 'react';
+import AppFooter from '@/components/app-footer';
 
 export default function AdminLogin() {
     const [username, setUsername] = useState('');
@@ -25,7 +26,7 @@ export default function AdminLogin() {
             <div className="flex min-h-screen">
                 <div className="hidden w-1/2 flex-col items-center justify-center bg-gradient-to-br from-indigo-600 via-blue-700 to-cyan-500 p-12 text-white lg:flex">
                     <School className="mb-6 h-16 w-16" />
-                    <h1 className="mb-2 text-3xl font-bold">SMP Negeri 1 Singaraja</h1>
+                    <h1 className="mb-2 text-3xl font-bold">SMP Negeri 1 Tejakula</h1>
                     <p className="mb-8 text-center text-lg text-white/80">
                         Sistem Pengumuman Kelulusan & Download SKL
                     </p>
@@ -89,6 +90,8 @@ export default function AdminLogin() {
                     </Card>
                 </div>
             </div>
+
+            <AppFooter />
         </>
     );
 }

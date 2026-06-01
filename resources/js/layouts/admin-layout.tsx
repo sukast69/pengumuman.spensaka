@@ -1,6 +1,7 @@
 import { Link, router } from '@inertiajs/react';
 import { useAppearance } from '@/hooks/use-appearance';
 import { LayoutDashboard, Table2, UserPlus, Upload, LogOut, Moon, Sun, Monitor } from 'lucide-react';
+import AppFooter from '@/components/app-footer';
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -135,6 +136,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             <main className="flex-1 overflow-auto p-4 md:p-6">
                 {children}
             </main>
+            <AppFooter />
         </div>
     );
 }

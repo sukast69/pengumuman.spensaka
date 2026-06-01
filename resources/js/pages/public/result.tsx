@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { CheckCircle2, XCircle, Download, ArrowLeft } from 'lucide-react';
+import AppFooter from '@/components/app-footer';
 
 type Student = {
     nisn: string;
@@ -157,6 +158,10 @@ export default function Result({ student }: { student: Student }) {
                             </Link>
                         </Button>
                     </div>
+                </div>
+
+                <div className="absolute bottom-0 left-0 right-0 z-10">
+                    <AppFooter variant="dark" />
                 </div>
             </div>
         </>
