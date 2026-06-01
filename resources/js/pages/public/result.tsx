@@ -145,15 +145,14 @@ export default function Result({ student }: { student: Student }) {
                         </CardContent>
                     </Card>
 
-                    <div className="mt-6 text-center">
+                    <div className="mt-6 mb-12 text-center">
                         <Button
-                            variant="ghost"
-                            size="sm"
-                            className="gap-1.5 text-sm text-slate-300 hover:text-white"
+                            size="lg"
+                            className="gap-2 bg-white/10 text-sm font-semibold tracking-wide text-white backdrop-blur-sm hover:bg-white/20 active:scale-[0.98]"
                             asChild
                         >
                             <Link href="/">
-                                <ArrowLeft className="h-3.5 w-3.5" />
+                                <ArrowLeft className="h-4 w-4" />
                                 Cari NISN Lain
                             </Link>
                         </Button>

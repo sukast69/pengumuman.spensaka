@@ -15,6 +15,11 @@ export default function SearchPage() {
         router.post('/search', { nisn: nisn.trim() });
     }
 
+    function handleNisnChange(value: string) {
+        const filtered = value.replace(/\D/g, '');
+        setNisn(filtered);
+    }
+
     return (
         <>
             <Head title="Pengumuman Kelulusan" />
@@ -58,9 +63,10 @@ export default function SearchPage() {
                                     <Input
                                         id="nisn"
                                         type="text"
+                                        inputMode="numeric"
                                         placeholder="Masukkan NISN"
                                         value={nisn}
-                                        onChange={(e) => setNisn(e.target.value)}
+                                        onChange={(e) => handleNisnChange(e.target.value)}
                                         required
                                         autoFocus
                                         maxLength={20}
