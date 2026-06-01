@@ -12,7 +12,6 @@ export default defineConfig({
             output: {
                 manualChunks(id: string) {
                     if (id.includes('node_modules/react-dom') || id.includes('node_modules/react/')) return 'vendor-react';
-                    if (id.includes('node_modules/@radix-ui/')) return 'vendor-radix';
                     if (id.includes('node_modules/lucide-react')) return 'vendor-lucide';
                     if (id.includes('node_modules/class-variance-authority') || id.includes('node_modules/clsx') || id.includes('node_modules/tailwind-merge') || id.includes('node_modules/sonner')) return 'vendor-utils';
                 },
