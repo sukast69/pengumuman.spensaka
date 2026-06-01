@@ -3,8 +3,10 @@ import { ColumnDef } from '@tanstack/react-table';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { Checkbox } from '@/components/ui/checkbox';
 import { DataTable } from '@/components/data-table';
-import { Plus, Upload, Pencil, Trash2 } from 'lucide-react';
+import { Plus, Upload, Pencil, Trash2, Trash } from 'lucide-react';
+import { useState } from 'react';
 
 type Student = {
     id: number;
@@ -27,17 +29,69 @@ type PaginatedData = {
 };
 
 export default function DataSiswa({ students }: { students: PaginatedData }) {
+    const [selectedIds, setSelectedIds] = useState<Set<number>>(new Set());
+
+    function toggleSelect(id: number) {
+        setSelectedIds((prev) => {
+            const next = new Set(prev);
+            if (next.has(id)) next.delete(id); else next.add(id);
+            return next;
+        });
+    }
+
+    function toggleSelectAll() {
+        const currentIds = students.data.map((s) => s.id);
+        const allSelected = currentIds.every((id) => selectedIds.has(id));
+        setSelectedIds((prev) => {
+            const next = new Set(prev);
+            currentIds.forEach((id) => {
+                if (allSelected) next.delete(id); else next.add(id);
+            });
+            return next;
+        });
+    }
+
     function handleDelete(id: number) {
         if (confirm('Apakah Anda yakin ingin menghapus data ini?')) {
             router.delete(`/admin/students/${id}`);
         }
     }
 
+    function handleBatchDelete() {
+        if (selectedIds.size === 0) return;
+        if (confirm(`Hapus ${selectedIds.size} data yang dipilih?`)) {
+            router.post('/admin/students/batch-delete', { ids: [...selectedIds] }, {
+                onSuccess: () => setSelectedIds(new Set()),
+            });
+        }
+    }
+
     function goToPage(page: number) {
+        setSelectedIds(new Set());
         router.get('/admin/data-siswa', { page }, { preserveState: true });
     }
 
+    const allOnPageSelected = students.data.length > 0 &&
+        students.data.every((s) => selectedIds.has(s.id));
+
     const columns: ColumnDef<Student>[] = [
+        {
+            id: 'select',
+            header: () => (
+                <Checkbox
+                    checked={allOnPageSelected}
+                    onCheckedChange={toggleSelectAll}
+                    aria-label="Pilih semua"
+                />
+            ),
+            cell: ({ row }) => (
+                <Checkbox
+                    checked={selectedIds.has(row.original.id)}
+                    onCheckedChange={() => toggleSelect(row.original.id)}
+                    aria-label="Pilih baris"
+                />
+            ),
+        },
         {
             accessorKey: 'nisn',
             header: 'NISN',
@@ -133,6 +187,27 @@ export default function DataSiswa({ students }: { students: PaginatedData }) {
                     </div>
                 </div>
 
+                {selectedIds.size > 0 && (
+                    <div className="flex items-center gap-2">
+                        <Button
+                            variant="destructive"
+                            size="sm"
+                            onClick={handleBatchDelete}
+                            className="gap-1.5"
+                        >
+                            <Trash className="h-4 w-4" />
+                            Hapus Terpilih ({selectedIds.size})
+                        </Button>
+                        <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => setSelectedIds(new Set())}
+                        >
+                            Batal
+                        </Button>
+                    </div>
+                )}
+
                 <Card>
                     <CardHeader className="pb-3">
                         <CardTitle className="text-sm font-semibold tracking-wide text-muted-foreground uppercase">
@@ -144,6 +219,7 @@ export default function DataSiswa({ students }: { students: PaginatedData }) {
                             columns={columns}
                             data={students.data}
                             searchKey="nisn"
+                            searchNumeric={true}
                             searchPlaceholder="Cari berdasarkan NISN..."
                             total={students.total}
                             from={students.from}

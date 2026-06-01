@@ -12,19 +12,22 @@ class StudentController extends Controller
 {
     public function index()
     {
-        $total = Student::count();
-        $lulus = Student::where('status_lulus', true)->count();
-        $tidakLulus = Student::where('status_lulus', false)->count();
-        $denganSkl = Student::whereNotNull('link_skl')->where('link_skl', '!=', '')->count();
+        $stats = Student::selectRaw("
+            COUNT(*) as total,
+            COUNT(CASE WHEN status_lulus = true THEN 1 END) as lulus,
+            COUNT(CASE WHEN status_lulus = false THEN 1 END) as tidak_lulus,
+            COUNT(CASE WHEN link_skl IS NOT NULL AND link_skl != '' THEN 1 END) as dengan_skl
+        ")->first();
+
         $recent = Student::orderBy('created_at', 'desc')->limit(5)->get();
 
         return Inertia::render('admin/dashboard', [
             'stats' => [
-                'total' => $total,
-                'lulus' => $lulus,
-                'tidak_lulus' => $tidakLulus,
-                'dengan_skl' => $denganSkl,
-                'persentase_lulus' => $total > 0 ? round(($lulus / $total) * 100, 1) : 0,
+                'total' => $stats->total,
+                'lulus' => $stats->lulus,
+                'tidak_lulus' => $stats->tidak_lulus,
+                'dengan_skl' => $stats->dengan_skl,
+                'persentase_lulus' => $stats->total > 0 ? round(($stats->lulus / $stats->total) * 100, 1) : 0,
             ],
             'recent_students' => $recent,
         ]);
@@ -165,6 +168,19 @@ class StudentController extends Controller
         $reader->close();
 
         return redirect('/admin/dashboard')->with('success', "Import selesai. {$imported} data baru, {$updated} data diperbarui.");
+    }
+
+    public function batchDestroy(Request $request)
+    {
+        $ids = $request->validate([
+            'ids' => 'required|array',
+            'ids.*' => 'integer|exists:students,id',
+        ]);
+
+        $count = count($ids['ids']);
+        Student::whereIn('id', $ids['ids'])->delete();
+
+        return redirect()->back()->with('success', "{$count} data berhasil dihapus.");
     }
 
     public function search(Request $request)

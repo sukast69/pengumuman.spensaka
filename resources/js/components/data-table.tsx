@@ -20,6 +20,7 @@ interface DataTableProps<TData, TValue> {
     data: TData[];
     searchKey?: string;
     searchPlaceholder?: string;
+    searchNumeric?: boolean;
     total: number;
     from: number;
     to: number;
@@ -33,6 +34,7 @@ export function DataTable<TData, TValue>({
     data,
     searchKey,
     searchPlaceholder = 'Cari...',
+    searchNumeric = false,
     total,
     from,
     to,
@@ -58,6 +60,22 @@ export function DataTable<TData, TValue>({
         },
     });
 
+    function handleSearchChange(e: React.ChangeEvent<HTMLInputElement>) {
+        const value = searchNumeric ? e.target.value.replace(/\D/g, '') : e.target.value;
+        table.getColumn(searchKey ?? '')?.setFilterValue(value);
+    }
+
+    function handleSearchKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
+        if (!searchNumeric) return;
+        if (
+            !/^\d$/.test(e.key) &&
+            !['Backspace','Delete','Tab','ArrowLeft','ArrowRight','Home','End'].includes(e.key) &&
+            !e.ctrlKey && !e.metaKey
+        ) {
+            e.preventDefault();
+        }
+    }
+
     return (
         <div>
             {searchKey && (
@@ -65,10 +83,10 @@ export function DataTable<TData, TValue>({
                     <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
                     <Input
                         placeholder={searchPlaceholder}
+                        inputMode={searchNumeric ? 'numeric' : undefined}
                         value={(table.getColumn(searchKey)?.getFilterValue() as string) ?? ''}
-                        onChange={(e) =>
-                            table.getColumn(searchKey)?.setFilterValue(e.target.value)
-                        }
+                        onChange={handleSearchChange}
+                        onKeyDown={handleSearchKeyDown}
                         className="h-10 max-w-xs pl-9"
                     />
                 </div>

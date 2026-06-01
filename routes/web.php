@@ -29,5 +29,6 @@ Route::prefix('admin')->group(function () {
         Route::delete('/students/{id}', [StudentController::class, 'destroy'])->name('admin.students.destroy');
         Route::get('/students/import', [StudentController::class, 'importForm'])->name('admin.students.import');
         Route::post('/students/import', [StudentController::class, 'import'])->name('admin.students.import.store');
+        Route::post('/students/batch-delete', [StudentController::class, 'batchDestroy'])->name('admin.students.batch-delete');
     });
 });

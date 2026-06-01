@@ -15,9 +15,14 @@ export default function SearchPage() {
         router.post('/search', { nisn: nisn.trim() });
     }
 
-    function handleNisnChange(value: string) {
-        const filtered = value.replace(/\D/g, '');
-        setNisn(filtered);
+    function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
+        if (
+            !/^\d$/.test(e.key) &&
+            !['Backspace','Delete','Tab','ArrowLeft','ArrowRight','Home','End'].includes(e.key) &&
+            !e.ctrlKey && !e.metaKey
+        ) {
+            e.preventDefault();
+        }
     }
 
     return (
@@ -66,7 +71,8 @@ export default function SearchPage() {
                                         inputMode="numeric"
                                         placeholder="Masukkan NISN"
                                         value={nisn}
-                                        onChange={(e) => handleNisnChange(e.target.value)}
+                                        onChange={(e) => setNisn(e.target.value.replace(/\D/g, ''))}
+                                        onKeyDown={handleKeyDown}
                                         required
                                         autoFocus
                                         maxLength={20}

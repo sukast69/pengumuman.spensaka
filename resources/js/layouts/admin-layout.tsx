@@ -1,6 +1,6 @@
 import { Link, router } from '@inertiajs/react';
 import { useAppearance } from '@/hooks/use-appearance';
-import { LayoutDashboard, Table2, UserPlus, Upload, LogOut, Moon, Sun, Monitor } from 'lucide-react';
+import { LayoutDashboard, Table2, UserPlus, Upload, LogOut, Moon, Sun, Monitor, Menu } from 'lucide-react';
 import AppFooter from '@/components/app-footer';
 import {
     DropdownMenu,
@@ -14,8 +14,6 @@ import {
     NavigationMenuItem,
     NavigationMenuList,
 } from '@/components/ui/navigation-menu';
-
-import { Menu } from 'lucide-react';
 import {
     Sheet,
     SheetContent,
@@ -24,6 +22,7 @@ import {
     SheetTitle,
     SheetTrigger,
 } from '@/components/ui/sheet';
+import { useState } from 'react';
 
 const navItems = [
     { href: '/admin/dashboard', label: 'Dashboard', icon: LayoutDashboard },
@@ -65,12 +64,14 @@ function AppearanceToggle() {
 }
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
+    const [sheetOpen, setSheetOpen] = useState(false);
+
     return (
         <div className="flex min-h-screen flex-col bg-background">
             <header className="sticky top-0 z-40 flex h-14 items-center justify-between border-b bg-background/95 px-4 backdrop-blur-xs">
                 <div className="flex items-center gap-4">
                     {/* Mobile Menu Trigger */}
-                    <Sheet>
+                    <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
                         <SheetTrigger asChild>
                             <Button variant="ghost" size="icon" className="md:hidden">
                                 <Menu className="h-5 w-5" />
@@ -87,7 +88,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                             <nav className="flex flex-col gap-2 pr-6">
                                 {navItems.map((item) => (
                                     <Button key={item.href} variant="ghost" className="justify-start h-10 px-3" asChild>
-                                        <Link href={item.href}>
+                                        <Link href={item.href} onClick={() => setSheetOpen(false)}>
                                             <item.icon className="mr-3 h-5 w-5 text-muted-foreground" />
                                             {item.label}
                                         </Link>
@@ -97,7 +98,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                                 <Button
                                     variant="ghost"
                                     className="justify-start h-10 px-3 text-destructive hover:bg-destructive/10 hover:text-destructive"
-                                    onClick={() => router.post('/admin/logout')}
+                                    onClick={() => { setSheetOpen(false); router.post('/admin/logout'); }}
                                 >
                                     <LogOut className="mr-3 h-5 w-5" />
                                     Logout
