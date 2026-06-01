@@ -22,7 +22,7 @@ export default function Result({ student }: { student: Student }) {
 
             <div 
                 className="relative flex min-h-screen items-center justify-center bg-slate-950 px-4 py-12 bg-cover bg-center bg-no-repeat"
-                style={{ backgroundImage: "url('/images/school_background.png')" }}
+                style={{ backgroundImage: "image-set(url('/images/school_background.webp') type('image/webp'), url('/images/school_background.png') type('image/png'))" }}
             >
                 {/* Translucent glass overlay */}
                 <div className="absolute inset-0 bg-slate-950/75 backdrop-blur-xs" />
